@@ -4,6 +4,7 @@ import guru.springframework.msscbreweryclient.web.model.BeerDto;
 import guru.springframework.msscbreweryclient.web.model.CustomerDto;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -60,6 +61,18 @@ public class BreweryClient {
         restTemplate.delete(getCustomerBasePath() + uuid);
     }
 
+//    ----------------------- Lexmark -----------------------
+
+    public ResponseEntity<String> getLexmarkType(String url1) {
+        ResponseEntity<String> response = restTemplate.getForEntity(url1, String.class);
+        return response;
+    }
+
+
+    public ResponseEntity<String> getLexmarkWarrantyInfo(String url2, String lexmarkType) {
+        ResponseEntity<String> response = restTemplate.getForEntity(url2, String.class);
+        return response;
+    }
 
 
 //    ----------------------- Helper Methods -----------------------
@@ -71,4 +84,5 @@ public class BreweryClient {
     public void setApihost(String apihost) {
         this.apihost = apihost;
     }
+
 }
